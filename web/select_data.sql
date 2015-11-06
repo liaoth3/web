@@ -1,0 +1,27 @@
+delimiter //
+drop procedure if exists select_data;
+create procedure select_data(in areaNumber int,in inter int,in buyLink int,in num int)
+begin
+	declare table_name varchar(20);
+	declare sql_text varchar(2000);
+	declare link varchar(500);
+	
+	set table_name = concat("record_5173_",areaNumber);
+	set sql_text = '';
+
+	if (buyLink = 1) then
+		set link = ",buyLink ";
+	else
+		set link = " ";
+	end if;
+	
+	set sql_text = concat("select univalence,price,createTime",link,"from ",table_name,
+							" where to_days(now()) = to_days(createTime) -", inter,
+							" order by univalence desc limit ", num);
+		select sql_text;
+		set @sql_text = sql_text;
+		prepare stmt from  @sql_text;
+		execute stmt;
+		deallocate prepare stmt;
+end //
+delimiter ;
