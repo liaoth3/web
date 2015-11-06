@@ -1,0 +1,23 @@
+www.renren.com	FALSE	/	FALSE	JSESSIONID	abcaRGZQWMwPG5WG777cv
+webpager.renren.com	FALSE	/	FALSE	JSESSIONID	abcUkdi1B79uC-UMc87cv
+.webpager.renren.com	TRUE	/	FALSE	wp-conn	1
+.webpager.renren.com	TRUE	/	FALSE	wp-kl	1446262212096
+.webpager.renren.com	TRUE	/	FALSE	1446262289	wp-win	1446262077586-1446262229102
+.renren.com	TRUE	/	FALSE	1603893043	anonymid	igdpwm8h-b3u2hr
+.renren.com	TRUE	/	FALSE	1446472243	depovince	ZGQT
+.renren.com	TRUE	/	FALSE	1477317043	_r01_	1
+.renren.com	TRUE	/	FALSE	jebecookies	49ea4bed-4f17-4e93-a6fc-84818ddbf5cf|||||
+.renren.com	TRUE	/	FALSE	ick_login	27bf267e-a7ca-40f5-b7fe-95e4a77bc900
+.renren.com	TRUE	/	FALSE	1477366077	_de	5BB1BF2D72FFE24AFEA45CBF925805E1
+.renren.com	TRUE	/	FALSE	p	6082735d22884f1c236971c8315ec3135
+.renren.com	TRUE	/	FALSE	first_login_flag	1
+.renren.com	TRUE	/	FALSE	1448854077	ln_uact	13929511767
+.renren.com	TRUE	/	FALSE	1448854077	ln_hurl	http://head.xiaonei.com/photos/0/0/men_main.gif
+.renren.com	TRUE	/	FALSE	t	f6f9e3a38c18521ce5d387130ccadb4d5
+.renren.com	TRUE	/	FALSE	societyguester	f6f9e3a38c18521ce5d387130ccadb4d5
+.renren.com	TRUE	/	FALSE	id	502603835
+.renren.com	TRUE	/	FALSE	xnsid	44100979
+.renren.com	TRUE	/	FALSE	1448854155	jebe_key	527f6fdb-d5b3-4923-b9cd-a25ebf4c7c58%7Ce32e00993387eb2e5d121a7232c5cc69%7C1446261638271%7C1%7C1446262063700
+.renren.com	TRUE	/	FALSE	ver	7.0
+.renren.com	TRUE	/	FALSE	loginfrom	null
+.renren.com	TRUE	/	FALSE	wp_fold	0
