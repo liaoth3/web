@@ -1,0 +1,40 @@
+server {
+    listen 80;
+    server_name localhost;
+    root /usr/share/nginx/html;
+    index index.html index.htm index.php;
+ 
+    location / {
+        try_files $uri $uri/ /index.php;
+    }
+
+	location /status {
+		stub_status on;
+		access_log off;
+	}
+
+    location ~ .*\.(php|php5)?$ {
+	 fastcgi_pass        unix:/var/run/php5-fpm.sock;
+         fastcgi_index       index.php;
+         fastcgi_param SCRIPT_FILENAME $document_root/$fastcgi_script_name;
+         include fastcgi_params
+			 ;
+		 fastcgi_connect_timeout 86400s;
+		 
+		#fastcgi_send_timeout 300s;
+		
+		#fastcgi_read_timeout 300s;
+
+		 fastcgi_buffer_size 128k;
+
+		 fastcgi_buffers 8 128k;#8 128
+
+		 fastcgi_busy_buffers_size 256k;
+
+		 fastcgi_temp_file_write_size 256k;
+
+		 fastcgi_intercept_errors on;
+
+		 include fastcgi.conf;
+    }   
+}
