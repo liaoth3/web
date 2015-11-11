@@ -28,10 +28,10 @@
 			$this->lowPrice 		= intval($config["5173"]["lowPrice"]);
 			$this->highPrice 		= intval($config["5173"]["highPrice"]);
 			$this->maxPage 			= intval($config["5173"]["maxPage"]);
-			$this->recordsAmount 	= intval($config["5173"]["recordsAmount"]);
+			$this->recordsAmount 		= intval($config["5173"]["recordsAmount"]);
 			$this->multiAmount 		= intval($config["5173"]["multiAmount"]);
 			$this->storeAmount		= intval($config["5173"]["storeAmount"]);
-			$this->isSearchSales 	= intval($config["5173"]["isSearchSales"]);
+			$this->isSearchSales 		= intval($config["5173"]["isSearchSales"]);
 			$this->repeatTimes		= intval($config["5173"]["repeatTimes"]);
 
 			$this->area 			= $config["common"]["area"];
@@ -240,7 +240,8 @@
 				file_put_contents($path."/$i.html",$c[$i]);
 			}
 		}
-		public function store(){
+		public function store()
+		{	
 			foreach ($this->result as $index => $r){
 				$count = 0;
 				foreach($r as $K => $v){
@@ -260,8 +261,8 @@
 					$credit 	    = $v["credit"];
 					$time 		    = $v["time"];
 					$buyLink	    = $v["buyLink"];
-
 					//search in cache
+					
 					$redis = cache::get_instance();
 					if(is_string($buyLink)){
 						$amount = $redis->get($buyLink);
@@ -281,7 +282,7 @@
 							$redis->set($buyLink,$itemAmount);
 						}
 					}
-
+					
 					//search in DB
 					$db = new Sql();
 					$selectSql	 = "select itemAmount from" . " record_5173_" . "$areaNumber where buyLink = '$buyLink'";
@@ -327,7 +328,8 @@
 					'$time',
 					'$buyLink'
 					)";
-					$db->dml($storeSql);
+					//echo $storeSql . "\n";
+					var_dump($db->dml($storeSql));
 				}
 			}	
 		}

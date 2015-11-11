@@ -1,36 +1,35 @@
 <?php
 	class Sql{
-		private $hostname = "localhost";
-		private $username = "root";
-		private $password = "root";
-		private $databaseName = "crawler";
-		public static $link = null;
+		private $hostname 		= "127.0.0.1";
+		private $username 		= "root";
+		private $password 		= "root";
+		private $databaseName 	= "crawler";
+		private  $mysqli 		= null;
 		public function __construct(){
-			if(self::$link ===null){
-				self::$link = mysqli_connect($this->hostname,$this->username,$this->password) or die("connet database failed !");
-				mysqli_select_db(self::$link, $this->databaseName) or die("database select failed !");
-				mysqli_query(self::$link, "set names GBK");
-				//echo "connect \n";
-			}
+				 $this->mysqli= new mysqli($this->hostname,$this->username,$this->password,$this->databaseName) or die("connet database failed !");
+				if(mysqli_connect_error()){
+					printf("Connect failed: %s\n", mysqli_connect_error());
+    				exit();
+				}
+				$this->mysqli->query("set names GBK");
 		}
 
 		//返回一个二维关联数组
 		public function dql($sql){
-			$result = mysqli_query(self::$link, $sql);
 			$r = array();
-			while($row = mysqli_fetch_assoc($result))$r[]=$row;
-			mysqli_free_result($result);
+			$result = $this->mysqli->query($sql);
+			if($result){
+				while($row = $result->fetch_assoc())$r[]=$row;
+				$result->close();
+			}
 			return $r;
 		}
 		public function dml($sql){
-			$result = mysqli_query(self::$link, $sql);
+			$result = $this->mysqli->query($sql);
 			return $result;
 		}
 		public function __destruct(){
-			mysqli_close(self::$link);
-			self::$link = null;
-			//echo "close \n";
-
+			$this->mysqli->close();
 		}
 
 	}
