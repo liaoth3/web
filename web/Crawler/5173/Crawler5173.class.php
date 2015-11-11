@@ -328,8 +328,7 @@
 					'$time',
 					'$buyLink'
 					)";
-					//echo $storeSql . "\n";
-					var_dump($db->dml($storeSql));
+					$db->dml($storeSql);
 				}
 			}	
 		}

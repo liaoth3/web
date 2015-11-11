@@ -5,7 +5,7 @@
 
  $data = array("startArea"=>$argv[1],"endArea"=>$argv[2],"count"=>$argv[3]);
  $output = login("http://localhost/web/Crawler/index.php",$data);
- echo $output;
+ echo "$output\n";
 
 
 
