@@ -1,0 +1,1 @@
+select username,userlevel from areanumber where areaname='广东区' and numbername='广东1区'
