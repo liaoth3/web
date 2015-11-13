@@ -34,7 +34,7 @@ function getUser($arr1,$arr2){
 	writeFile($arr2."/".$arr1);
 	$mysql_server_name="localhost";
 	$mysql_username="root";
-	$mysql_password="";
+	$mysql_password="root";
 	$mysql_database="urldatabase";
 	try{
 		$conn=mysqli_connect($mysql_server_name,$mysql_username,$mysql_password,$mysql_database);

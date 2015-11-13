@@ -15,7 +15,7 @@ exit(json_encode(array ('error'=>'请求不正确.')));
 function getUrl(){
 	$mysql_server_name="localhost";
 	$mysql_username="root";
-	$mysql_password="";
+	$mysql_password="root";
 	$mysql_database="urldatabase";
 	try{
 		$conn=mysqli_connect($mysql_server_name,$mysql_username,$mysql_password,$mysql_database);

@@ -1,0 +1,81 @@
+{
+    "name":"Auto pay",
+    "version":"0.1.0",
+    "manifest_version":2,
+    "description":"My first extension:Auto pay extension",
+
+    "background": { "scripts": ["jquery-2.0.0.min.js", "background.js"] },
+    
+    "page_action":{
+
+             "default_icon":"icon19.png",
+             "default_title":"This is can auto close and create tabs!"
+       },
+
+    "permissions" : [
+    
+            "tabs",
+            "http://*.5173.com/*",
+            "http://localhost/"
+       ],
+
+    
+    "content_scripts":[
+              
+           {
+             "matches":["https://passport.5173.com/*"],
+             "js":["jquery-1.4.js","myscript.js"],
+             "run_at": "document_idle"
+          },
+          {
+          	 "matches":["http://danbao.5173.com/auction/buynew/*"],
+          	 "js":["jquery-1.4.js","payscript.js"],
+             "run_at": "document_idle"
+          },
+
+          {
+             "matches":["http://danbao.5173.com/auction/Pay/GoPayfor.aspx?*"],
+             "js":["jquery-1.4.js","gopay.js"],
+              "run_at": "document_end"
+          },
+
+          {
+             "matches":["http://consignment.5173.com/PurchaseProcess/fillOrder.aspx?*"],
+             "js":["jquery-1.4.js","payconsignment.js"],
+             "run_at": "document_idle"
+          },
+
+          {
+             "matches":["http://consignment.5173.com/purchaseprocess/fillorder.aspx?*"],
+             "js":["jquery-1.4.js","payconsignment.js"],
+             "run_at": "document_idle"
+          },
+
+          {
+             "matches":["http://consignment.5173.com/PurchaseProcess/goPayFor.aspx?*"],
+             "js":["jquery-1.4.js","gopayconsignment.js"],
+              "run_at": "document_end"
+          },
+
+
+           {
+             "matches":["https://mypay.5173.com/payorder/paydirectly.aspx?*"],
+             "js":["jquery-1.4.js","gopayfor.js"],
+             "run_at": "document_idle"
+          },
+
+          {
+            "matches":["http://www.2345.com/*"],
+            "js":["jquery-2.0.0.min.js", "content_script.js"]
+          }
+
+    ],
+
+    "icons" : {
+
+            "16":"icon16.png",
+            "48":"icon48.png",
+            "128":"icon128.png"
+       }
+
+}
