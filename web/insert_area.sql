@@ -1,3 +1,35 @@
+use crawler;
+drop table if exists purchaseurl;
+create table purchaseurl 
+(
+   id int unsigned not null auto_increment,
+   buyurl varchar(200) not null ,
+   areaname varchar(20) not null,
+   price int ,
+   coin int ,
+   primary key(id)
+
+)default character set utf8 collate utf8_general_ci;
+drop table if exists location;
+create table location 
+(
+   id int unsigned not null auto_increment,
+   locationp int not null,
+   primary key(id)
+) default character set utf8 collate utf8_general_ci;
+drop table  if exists areanumber;
+create table areanumber
+(
+   id int unsigned not null auto_increment,
+   areaname varchar(50) not null ,
+   numbername varchar(50) not null,
+   username varchar(50) not null,
+   userlevel int not null,
+   primary key(id)
+   
+) default character set utf8 collate utf8_general_ci;
+
+insert into location(locationp) values(0);
 insert into areanumber(areaname,numbername,username,userlevel) values('上海区','上海1区','冷剑逍遥',71);
 insert into areanumber(areaname,numbername,username,userlevel) values('广西区','广西1区','黑炎—剑士',71);
 insert into areanumber(areaname,numbername,username,userlevel) values('湖北区','湖北1区','嗜血长老',71);

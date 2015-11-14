@@ -1,12 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="4ddbe2fd-490c-4ac5-a125-89d9388c685d" name="Default" comment="">
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/web/Crawler/5173/Crawler5173.class.php" afterPath="$PROJECT_DIR$/web/Crawler/5173/Crawler5173.class.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/web/.idea/workspace.xml" afterPath="$PROJECT_DIR$/web/.idea/workspace.xml" />
-    </list>
+    <list default="true" id="4ddbe2fd-490c-4ac5-a125-89d9388c685d" name="Default" comment="" />
     <ignored path="html.iws" />
     <ignored path=".idea/workspace.xml" />
+    <ignored path=".idea/dataSources.local.xml" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="TRACKING_ENABLED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -27,9 +25,13 @@
       <file leaf-file-name="getUrl.php" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/geturl/getUrl.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="-0.0">
-              <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-              <folding />
+            <state vertical-scroll-proportion="0.9285714">
+              <caret line="23" column="24" selection-start-line="23" selection-start-column="24" selection-end-line="23" selection-end-column="24" />
+              <folding>
+                <marker date="1447468351738" expanded="true" signature="722:744" placeholder="select * fro..location..." />
+                <marker date="1447468351738" expanded="true" signature="986:1029" placeholder="select id,bu..purchaseurl..." />
+                <marker date="1447468351738" expanded="true" signature="1253:1302" placeholder="update locat..." />
+              </folding>
             </state>
           </provider>
         </entry>
@@ -37,8 +39,8 @@
       <file leaf-file-name="getUser.php" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/geturl/getUser.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.35910654">
-              <caret line="20" column="30" selection-start-line="20" selection-start-column="30" selection-end-line="20" selection-end-column="30" />
+            <state vertical-scroll-proportion="0.22852233">
+              <caret line="7" column="26" selection-start-line="7" selection-start-column="26" selection-end-line="7" selection-end-column="26" />
               <folding>
                 <marker date="1447468421649" expanded="true" signature="1227:1314" placeholder="select usern..areanumber..." />
               </folding>
@@ -175,16 +177,20 @@
   <component name="editorHistoryManager">
     <entry file="file://$PROJECT_DIR$/geturl/getUrl.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding />
+        <state vertical-scroll-proportion="0.9285714">
+          <caret line="23" column="24" selection-start-line="23" selection-start-column="24" selection-end-line="23" selection-end-column="24" />
+          <folding>
+            <marker date="1447468351738" expanded="true" signature="722:744" placeholder="select * fro..location..." />
+            <marker date="1447468351738" expanded="true" signature="986:1029" placeholder="select id,bu..purchaseurl..." />
+            <marker date="1447468351738" expanded="true" signature="1253:1302" placeholder="update locat..." />
+          </folding>
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/geturl/getUser.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.35910654">
-          <caret line="20" column="30" selection-start-line="20" selection-start-column="30" selection-end-line="20" selection-end-column="30" />
+        <state vertical-scroll-proportion="0.22852233">
+          <caret line="7" column="26" selection-start-line="7" selection-start-column="26" selection-end-line="7" selection-end-column="26" />
           <folding>
             <marker date="1447468421649" expanded="true" signature="1227:1314" placeholder="select usern..areanumber..." />
           </folding>
