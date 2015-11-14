@@ -245,9 +245,10 @@
 				$count = 0;
 				foreach($r as $K => $v){
 					if($count++ >= ($this->storeAmount / 2) )break;
-					$goldAmount = $v["goldAmount"];
-					$price = $v["price"];
-					$buyLink = $v["buyLink"];
+					$goldAmount 	= $v["goldAmount"];
+					$price 			= $v["price"];
+					$buyLink 		= $v["buyLink"];
+					$areaname 		= $this->config["common"]["area"][$index];
 					$univalence 	= number_format($goldAmount / $price,2);
 					$buyUnivalence	= number_format($this->config["common"]["univalence"][$index],2);
 					if($univalence 	> $buyUnivalence){
@@ -270,11 +271,13 @@
 						}
 						$storeSql = "insert into purchaseurl (
 						buyurl,
+						areaname,
 						price,
 						coin
 						)
 						values(
 						'$buyLink',
+						'$areaname'
 						$price,
 						$goldAmount
 						)";
