@@ -1,3 +1,6 @@
+insert into areanumber(areaname,numbername,username,userlevel) values('上海区','上海1区','冷剑逍遥',71);
+insert into areanumber(areaname,numbername,username,userlevel) values('广西区','广西1区','黑炎—剑士',71);
+insert into areanumber(areaname,numbername,username,userlevel) values('湖北区','湖北1区','嗜血长老',71);
 insert into areanumber(areaname,numbername,username,userlevel) values('安徽区','安徽1区','请叫我，小贱',71);
 insert into areanumber(areaname,numbername,username,userlevel) values('西北区','西北1区','5456423489',71);
 insert into areanumber(areaname,numbername,username,userlevel) values('重庆区','重庆1区','今天打平00',71);

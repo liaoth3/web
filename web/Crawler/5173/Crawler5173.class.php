@@ -244,13 +244,28 @@
 			foreach ($this->result as $index => $r){
 				$count = 0;
 				foreach($r as $K => $v){
-					if($count++ >= $this->storeAmount)break;
+					if($count++ >= ($this->storeAmount / 2) )break;
 					$goldAmount = $v["goldAmount"];
 					$price = $v["price"];
 					$buyLink = $v["buyLink"];
 					$univalence 	= number_format($goldAmount / $price,2);
 					$buyUnivalence	= number_format($this->config["common"]["univalence"][$index],2);
 					if($univalence 	> $buyUnivalence){
+						$redis = cache::get_instance();
+						if(is_string($buyLink)){
+							$amount = $redis->get($buyLink);
+							if($amount){
+								continue;
+							}
+						}
+					
+						//search in DB
+						$db = new Sql();
+						$selectSql	 = "select id from purchaseurl where buyLink = '$buyLink'";
+						$res = $db->dql($selectSql);
+		                if(!empty($res)){
+							continue;
+						}
 						$db = new Sql();
 						$storeSql = "insert into purchaseurl (
 						buyurl,
