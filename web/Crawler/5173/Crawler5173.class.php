@@ -251,22 +251,23 @@
 					$univalence 	= number_format($goldAmount / $price,2);
 					$buyUnivalence	= number_format($this->config["common"]["univalence"][$index],2);
 					if($univalence 	> $buyUnivalence){
-						$redis = cache::get_instance();
+                        $redis = cache::get_instance();
 						if(is_string($buyLink)){
-							$amount = $redis->get($buyLink);
-							if($amount){
+							$buyLink_ = $buyLink . "toBuy";
+							if($redis->get($buyLink_)){
 								continue;
+							}else{
+								$redis->set($buyLink_, 1);
 							}
 						}
-					
+
 						//search in DB
 						$db = new Sql();
-						$selectSql	 = "select id from purchaseurl where buyLink = '$buyLink'";
+						$selectSql	 = "select id from purchaseurl where buyurl = '$buyLink'";
 						$res = $db->dql($selectSql);
 		                if(!empty($res)){
 							continue;
 						}
-						$db = new Sql();
 						$storeSql = "insert into purchaseurl (
 						buyurl,
 						price,
