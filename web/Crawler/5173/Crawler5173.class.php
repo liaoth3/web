@@ -28,10 +28,10 @@
 			$this->lowPrice 		= intval($config["5173"]["lowPrice"]);
 			$this->highPrice 		= intval($config["5173"]["highPrice"]);
 			$this->maxPage 			= intval($config["5173"]["maxPage"]);
-			$this->recordsAmount 		= intval($config["5173"]["recordsAmount"]);
+			$this->recordsAmount 	= intval($config["5173"]["recordsAmount"]);
 			$this->multiAmount 		= intval($config["5173"]["multiAmount"]);
 			$this->storeAmount		= intval($config["5173"]["storeAmount"]);
-			$this->isSearchSales 		= intval($config["5173"]["isSearchSales"]);
+			$this->isSearchSales 	= intval($config["5173"]["isSearchSales"]);
 			$this->repeatTimes		= intval($config["5173"]["repeatTimes"]);
 
 			$this->area 			= $config["common"]["area"];
@@ -238,6 +238,34 @@
 			mkdir($path,0777);
 			for($i=0;$i<count($c);$i++){
 				file_put_contents($path."/$i.html",$c[$i]);
+			}
+		}
+		public  function  storeArea(){
+			foreach ($this->result as $index => $r){
+				$count = 0;
+				foreach($r as $K => $v){
+					if($count++ >= $this->storeAmount)break;
+					$goldAmount = $v["goldAmount"];
+					$price = $v["price"];
+					$buyLink = $v["buyLink"];
+					$univalence 	= number_format($goldAmount / $price,2);
+					$buyUnivalence	= number_format($this->config["common"]["univalence"][$index],2);
+					if($univalence 	> $buyUnivalence){
+						$db = new Sql();
+						$storeSql = "insert into purchaseurl (
+						buyurl,
+						price,
+						coin
+						)
+						values(
+						'$buyLink',
+						$price,
+						$goldAmount
+						)";
+						$db->dml($storeSql);
+					}
+
+				}
 			}
 		}
 		public function store()

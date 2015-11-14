@@ -1,6 +1,4 @@
-create database urldatabase DEFAULT CHARACTER SET utf8 COLLATE utf8_general_ci;
-
-
+use crawler;
 create table purchaseurl 
 (
    id int unsigned not null auto_increment,
