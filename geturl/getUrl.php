@@ -13,7 +13,7 @@ else{
 exit(json_encode(array ('error'=>'请求不正确.')));
  
 function getUrl(){
-	$mysql_server_name="localhost";
+	$mysql_server_name="123.56.126.96";
 	$mysql_username="root";
 	$mysql_password="root";
 	$mysql_database="crawler";
