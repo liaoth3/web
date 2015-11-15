@@ -4,7 +4,7 @@ function test5173($config,$startArea, $endArea){
 	$c->start();
 	$c->store();
 	//$c->showList();
-    $c->storeArea();
+   	$c->storeArea();
 	return $c->getList();
 }
 function login($url,$argv){

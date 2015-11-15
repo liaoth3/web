@@ -22,7 +22,6 @@
 		private $config;//配置变量
 		private $repeatTimes;//超时最多重新执行多少次
 		public function  __construct($startArea,$endArea,$config){
-			//$config = parse_ini_file("./common/config.ini",true);//加载配置文件
 			$this->config			= $config;
 			$this->urlArray 		= $config["5173"]["url"];
 			$this->lowPrice 		= intval($config["5173"]["lowPrice"]);
@@ -249,27 +248,30 @@
 					$price 			= $v["price"];
 					$buyLink 		= $v["buyLink"];
 					$areaname 		= $this->config["common"]["area"][$index];
-					$univalence 	= number_format($goldAmount / $price,2);
-					$buyUnivalence	= number_format($this->config["common"]["univalence"][$index],2);
+					$univalence 	= round($goldAmount / $price,2);
+					$buyUnivalence	= round($this->config["common"]["univalence"][$index],2);
 					if($univalence 	> $buyUnivalence){
-                        $redis = cache::get_instance();
+                        		$redis = cache::get_instance();
 						if(is_string($buyLink)){
 							$buyLink_ = $buyLink . "toBuy";
-							if($redis->get($buyLink_)){
+							if($redis->exists($buyLink_)){
 								continue;
 							}else{
+								echo "not exists\n";
 								$redis->set($buyLink_, 1);
 							}
 						}
 
 						//search in DB
 						$db = new Sql();
+						
 						$selectSql	 = "select id from purchaseurl where buyurl = '$buyLink'";
 						$res = $db->dql($selectSql);
-		                if(!empty($res)){
+		                		//echo "$selectSql\n";
+						if(count($res) > 0){
 							continue;
 						}
-						$storeSql = "insert into purchaseurl (
+						$storeSql = "insert into purchaseurl(
 						buyurl,
 						areaname,
 						price,
@@ -277,10 +279,11 @@
 						)
 						values(
 						'$buyLink',
-						'$areaname'
+						'$areaname',
 						$price,
 						$goldAmount
 						)";
+						//echo "$storeSql\n";
 						$db->dml($storeSql);
 					}
 
