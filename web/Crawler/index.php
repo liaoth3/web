@@ -4,7 +4,7 @@
  	require_once dirname(__FILE__) . '/5173/Crawler5173.class.php';
 	require_once dirname(__FILE__) . '/common/functions.php';
  	$config = parse_ini_file(dirname(__FILE__) . '/common/config.ini',true);//º”‘ÿ≈‰÷√Œƒº˛
-//	$config = configMap($config);
+	$config = configMap($config);
 	$startArea 	= isset($_POST["startArea"]) ? $_POST["startArea"] : 0;
 	$endArea 	= isset($_POST["endArea"]) ? $_POST["endArea"] : 10;
 	$count 		= isset($_POST["count"]) ? $_POST["count"] : 1;
