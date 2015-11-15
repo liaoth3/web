@@ -243,14 +243,14 @@
 			foreach ($this->result as $index => $r){
 				$count = 0;
 				foreach($r as $K => $v){
-					if($count++ >= ($this->storeAmount / 2) )break;
+					if($count++ >= ($this->storeAmount / 2 + 1) )break;
 					$goldAmount 	= $v["goldAmount"];
 					$price 			= $v["price"];
 					$buyLink 		= $v["buyLink"];
 					$areaname 		= $this->config["common"]["area"][$index];
 					$univalence 	= round($goldAmount / $price,2);
 					$buyUnivalence	= round($this->config["common"]["univalence"][$index],2);
-					if($univalence 	> $buyUnivalence){
+					if($univalence 	>= $buyUnivalence){
                         		$redis = cache::get_instance();
 						if(is_string($buyLink)){
 							$buyLink_ = $buyLink . "toBuy";
