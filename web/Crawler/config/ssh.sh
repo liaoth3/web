@@ -1,0 +1,1 @@
+utossh -M 10900 -fN -o "PubkeyAuthentication=yes" -o "StrictHostKeyChecking=false" -o "PasswordAuthentication=no" -o "ServerAliveInterval 60" -o "ServerAliveCountMax 3" -R 123.56.126.96:10022:localhost:22 root@123.56.126.96
