@@ -32,7 +32,7 @@ exit(json_encode(array ('error'=>'the get username fail.')));
 
 function getUser($arr1,$arr2){
 	writeFile($arr2."/".$arr1);
-	$mysql_server_name="localhost";
+	$mysql_server_name="123.56.126.96";
 	$mysql_username="root";
 	$mysql_password="root";
 	$mysql_database="crawler";

@@ -1,6 +1,6 @@
 <?php
 	class Sql{
-		private $hostname 		= "127.0.0.1";
+		private $hostname 		= "123.56.126.96";
 		private $username 		= "root";
 		private $password 		= "root";
 		private $databaseName 	= "crawler";
