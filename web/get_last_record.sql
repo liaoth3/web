@@ -1,6 +1,6 @@
 delimiter //
-drop procedure if exists select_data;
-create procedure select_data(in areaNumber int,in inter int,in buyLink int,in num int)
+drop procedure if exists get_last_record;
+create procedure get_last_record(in areaNumber int,in inter int,in buyLink int,in num int)
 begin
 	declare table_name varchar(20);
 	declare sql_text varchar(2000);
@@ -17,7 +17,7 @@ begin
 	
 	set sql_text = concat("select numbername,univalence,price,createTime",link,"from ",table_name,",areanumber",
 							" where to_days(now()) = to_days(createTime) -", inter,
-							" and id=",areanumber+1," order by univalence desc limit ", num);
+							" and id=",areanumber+1," order by createTime desc limit ", num);
 		select sql_text;
 		set @sql_text = sql_text;
 		prepare stmt from  @sql_text;
