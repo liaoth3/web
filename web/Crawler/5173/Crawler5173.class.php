@@ -247,6 +247,7 @@
 					$goldAmount 	= $v["goldAmount"];
 					$price 			= $v["price"];
 					$buyLink 		= $v["buyLink"];
+					$time			= $v["time"];
 					$areaname 		= $this->config["common"]["area"][$index];
 					$univalence 	= round($goldAmount / $price,2);
 					$buyUnivalence	= round($this->config["common"]["univalence"][$index],2);
@@ -274,13 +275,15 @@
 						buyurl,
 						areaname,
 						price,
-						coin
+						coin,
+						createTime
 						)
 						values(
 						'$buyLink',
 						'$areaname',
 						$price,
-						$goldAmount
+						$goldAmount,
+						'$time'
 						)";
 						//echo "$storeSql\n";
 						$db->dml($storeSql);

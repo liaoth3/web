@@ -7,6 +7,7 @@ create table purchaseurl
    areaname varchar(20) not null,
    price int ,
    coin int ,
+   createTie datetime,
    primary key(id)
 
 )default character set utf8 collate utf8_general_ci;
