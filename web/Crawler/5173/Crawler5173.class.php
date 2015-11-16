@@ -257,7 +257,6 @@
 							if($redis->exists($buyLink_)){
 								continue;
 							}else{
-								echo "not exists\n";
 								$redis->set($buyLink_, 1);
 							}
 						}
