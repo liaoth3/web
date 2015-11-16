@@ -15,9 +15,9 @@ begin
 		set link = " ";
 	end if;
 	
-	set sql_text = concat("select univalence,price,createTime",link,"from ",table_name,
+	set sql_text = concat("select areaname,univalence,price,createTime",link,"from ",table_name,",areanumber",
 							" where to_days(now()) = to_days(createTime) -", inter,
-							" order by univalence desc limit ", num);
+							" and id=",areanumber+1," order by univalence desc limit ", num);
 		select sql_text;
 		set @sql_text = sql_text;
 		prepare stmt from  @sql_text;
