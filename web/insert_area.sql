@@ -59,6 +59,6 @@ insert into areanumber(areaname,numbername,username,userlevel) values('东北区
 insert into areanumber(areaname,numbername,username,userlevel) values('四川区','四川2区','帅【哥】',71);
 insert into areanumber(areaname,numbername,username,userlevel) values('山东区','山东2/7区','鬼丶狂战↗',71);
 insert into areanumber(areaname,numbername,username,userlevel) values('江苏区','江苏3区','谔谔の我爱你',71);
-insert into areanumber(areaname,numbername,username,userlevel) values('河北区','河北2区','魔灬狂丿',71);
+insert into areanumber(areaname,numbername,username,userlevel) values('河北区','河北2/3区','魔灬狂丿',71);
 insert into areanumber(areaname,numbername,username,userlevel) values('广东区','广东3区','血配者',71);
 

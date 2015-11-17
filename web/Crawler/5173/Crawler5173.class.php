@@ -250,9 +250,10 @@
 					$time			= $v["time"];
 					$areaname 		= $this->config["common"]["area"][$index];
 					$univalence 	= round($goldAmount / $price,2);
-					$buyUnivalence	= round($this->config["common"]["univalence"][$index],2);
+					$buyUnivalence	= round($this->config["common"]["univalence"][$index],2) * (1 + round($this->config["common"]["profitRate"],2);
+					$buyUnivalence	= round($buyUnivalence,2);	
 					if($univalence 	>= $buyUnivalence){
-                        		$redis = cache::get_instance();
+                        $redis = cache::get_instance();
 						if(is_string($buyLink)){
 							$buyLink_ = $buyLink . "toBuy";
 							if($redis->exists($buyLink_)){
