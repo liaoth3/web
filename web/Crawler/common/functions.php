@@ -14,9 +14,8 @@ function login($url,$argv){
 	curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);
 	curl_setopt($ch, CURLOPT_HEADER, 0);
 	curl_setopt($ch, CURLOPT_POSTFIELDS, $post_data);
-    curl_close($ch);
 	$output = curl_exec($ch);
-
+    curl_close($ch);
 	return $output;
 }
 function login_with_json_data($url, $jsonStr){
@@ -29,7 +28,7 @@ function login_with_json_data($url, $jsonStr){
             'Content-Length: ' . strlen($jsonStr))
     );
     $output = curl_exec($ch);
-
+    curl_close($ch);
     return $output;
 }
 function configMap($config){

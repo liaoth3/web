@@ -55,12 +55,15 @@ chrome.runtime.onMessage.addListener(function(request, sender, sendRequest){
 			dataType: "json",
 			success:function(data){
 				if(data.message){
+                    alert("message");
 					return;
 				}
 				if(data.error){
+                    alert("error");
 					return;
 				}
 				for(var key in data){
+                    alert(data[key]);
 					if(typeof data[key]!="undefined" && null!=data[key]){
 						chrome.tabs.create({url:data[key]});
 					}

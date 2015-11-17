@@ -59,7 +59,7 @@ function getUser($location){
 			dataType: "json",
 			success:function(data){
 				if(data.message){
-//					alert(data.message);
+					alert(data.message);
 					$username="我我的的你不";
 					$rank="70";
 				}
@@ -70,8 +70,8 @@ function getUser($location){
 				}
 				else{
 					$username=data["username"];
-//					$susername=data["username"];
 					$rank=data["userlevel"];
+                    alert($username);
 				}				
 				$("#PurchaseOrderNew1_BuyerGameRoleInfo1_txtGameRole").attr("value",$username);
 				$("#PurchaseOrderNew1_BuyerGameRoleInfo1_txtGameRoleValidate").attr("value",$username);

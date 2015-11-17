@@ -7,17 +7,17 @@ echo json_encode(response());
 
 function response(){
     try{
-        $input        = file_get_contents("php://input");
-		echo $input ."\n";
-       	$jsonData     = json_decode($input);
-		if(empty($jsonData)){
+        $input      = file_get_contents("php://input");
+        $jsonData   = json_decode($input, true);
+        if(is_null($jsonData))
             throw new Exception();
-        }
-		if($jsonData["method"] == "getUrl")){
+        
+		if($jsonData["method"] == "getUrl"){
             $arrUrl = getUrl();
             if(array_key_exists("fail",$arrUrl)){
                 return array ('message'=>'there is no new url');
             }else{
+                //sendMail("798646889@qq.com","购买日志","购买成功！");
                 return $arrUrl;
             }
         }else if($jsonData["method"] == "getUser"){
@@ -39,7 +39,6 @@ function response(){
             throw new Exception();
         }
         
-       
     }catch (Exception $e){
         return array ('error'=>'! the request is wrong');
     }
