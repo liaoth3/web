@@ -8,34 +8,38 @@ echo json_encode(response());
 function response(){
     try{
         $input        = file_get_contents("php://input");
+		echo $input ."\n";
        	$jsonData     = json_decode($input);
-        if(!$jsonData){
+		if(empty($jsonData)){
             throw new Exception();
         }
-
-		if(empty($input)){
+		if($jsonData["method"] == "getUrl")){
             $arrUrl = getUrl();
             if(array_key_exists("fail",$arrUrl)){
                 return array ('message'=>'there is no new url');
             }else{
                 return $arrUrl;
             }
+        }else if($jsonData["method"] == "getUser"){
+            if(empty($jsonData["area"])){
+                return Array("user"=>"我我的的你不", "rank"=>"71");
+            }
+            if(empty($jsonData["fNumber"])){
+                return Array("user"=>"我我的的你不", "rank"=>"71");
+            }
+
+            $list   = getUser($jsonData["area"],$jsonData["fNumber"]);
+
+            if(array_key_exists("fail",$list)){
+                return array ('message'=>'! get user failed ');
+            }
+            return $list;
+
+        }else{
+            throw new Exception();
         }
         
-        if(empty($jsonData["area"])){
-            return Array("user"=>"我我的的你不", "rank"=>"71");
-        }
-        if(empty($jsonData["fNumber"])){
-            return Array("user"=>"我我的的你不", "rank"=>"71");
-        }
-
-        $list   = getUser($jsonData["area"],$jsonData["fNumber"]);
-
-        if(array_key_exists("fail",$list)){
-            return array ('message'=>'! get user failed ');
-        }
-        return $list;
-
+       
     }catch (Exception $e){
         return array ('error'=>'! the request is wrong');
     }

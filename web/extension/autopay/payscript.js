@@ -55,7 +55,7 @@ function getUser($location){
 			url: "http://localhost/web/extension/refresh.php",
 			cache: false,
 			type: "POST",
-			data: JSON.stringify({area:$area,fNumber:$fNumber}),
+			data: JSON.stringify({method:"getUser",area:$area,fNumber:$fNumber}),
 			dataType: "json",
 			success:function(data){
 				if(data.message){

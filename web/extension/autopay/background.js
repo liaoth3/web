@@ -51,7 +51,7 @@ chrome.runtime.onMessage.addListener(function(request, sender, sendRequest){
 			url: "http://localhost/web/extension/refresh.php",
 			cache: false,
 			type: "POST",
-			data: {},
+			data: JSON.stringify({method:"getUrl"}),
 			dataType: "json",
 			success:function(data){
 				if(data.message){
