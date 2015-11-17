@@ -32,7 +32,7 @@ begin
 			credit varchar(10),
 			createTime datetime,
 			buylink varchar(150)
-		)engine=Innodb charset = utf8');
+		)engine=myIsam charset = utf8');
 		select sql_text;
 		set @sql_text = sql_text;
 		prepare stmt from  @sql_text;
