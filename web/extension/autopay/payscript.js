@@ -61,14 +61,14 @@ function getUser($location){
 				if(data.message){
 					alert(data.message);
 					$username="我我的的你不";
-					$rank="70";
+					$rank="71";
 				}
 				
 				else if(data.error){
 					alert(data.error);
 					return;
 				}
-				else{
+				else {
 					$username=data["username"];
 					$rank=data["userlevel"];
                     alert($username);

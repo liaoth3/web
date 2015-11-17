@@ -41,17 +41,16 @@ function getUser($location){
 	var $area=$arr.pop();
 	if($area!=null && $area!="" && $fNumber!="" && $fNumber!=null){
 		$.ajax({
-			url: "http://localhost/geturl/getUser.php",
-//		    url: "http://localhost/geturlanduser/getUser.php",
+			url: "http://localhost/web/extension/refresh.php",
 			cache: false,
 			type: "POST",
-			data: JSON.stringify({area:$area,fNumber:$fNumber}),
+			data: JSON.stringify({method:"getUser",area:$area,fNumber:$fNumber}),
 			dataType: "json",
 			success:function(data){
 				if(data.message){
 //					alert(data.message);
 					$username="我我的的你不";
-					$rank="70";
+					$rank="71";
 				}
 				
 				else if(data.error){
