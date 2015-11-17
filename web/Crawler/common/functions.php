@@ -14,10 +14,23 @@ function login($url,$argv){
 	curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);
 	curl_setopt($ch, CURLOPT_HEADER, 0);
 	curl_setopt($ch, CURLOPT_POSTFIELDS, $post_data);
+    curl_close($ch);
 	$output = curl_exec($ch);
 
-	curl_close($ch);
 	return $output;
+}
+function login_with_json_data($url, $jsonStr){
+    $ch = curl_init($url);
+    curl_setopt($ch, CURLOPT_CUSTOMREQUEST, "POST");
+    curl_setopt($ch, CURLOPT_POSTFIELDS,$jsonStr);
+    curl_setopt($ch, CURLOPT_RETURNTRANSFER,true);
+    curl_setopt($ch, CURLOPT_HTTPHEADER, array(
+            'Content-Type: application/json',
+            'Content-Length: ' . strlen($jsonStr))
+    );
+    $output = curl_exec($ch);
+
+    return $output;
 }
 function configMap($config){
     $result = $config;
