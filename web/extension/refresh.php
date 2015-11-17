@@ -3,7 +3,7 @@ header("content-type:application/json; charset:utf-8");
 require_once dirname(__FILE__) . "/../Crawler/common/Sql.class.php";
 require_once dirname(__FILE__) . "/../lib/mail/sendMail.php";
 
-echo json_encode(response());
+exit(json_encode(response()));
 
 function response(){
     try{
@@ -49,10 +49,10 @@ function getUrl(){
 		$db = new Sql();
 		$queryLocation  = "select * from location";
         $resultLocation = $db->dql($queryLocation);
-		if(!isset($resultLocation[0]["id"])) {
+		if(!isset($resultLocation[0]["locationp"])) {
             throw new Exception();
         }
-		$query  = "select id,buyurl from purchaseurl where id > " . $resultLocation[0]["id"];
+		$query  = "select id,buyurl from purchaseurl where id > " . $resultLocation[0]["locationp"];
         $res    = array();
         $result = $db->dql($query);
         if(count($result) == 0){
