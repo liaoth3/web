@@ -52,8 +52,7 @@ function getUser($location){
 	var $area=$arr.pop();
 	if($area!=null && $area!="" && $fNumber!="" && $fNumber!=null){
 		$.ajax({
-			url: "http://localhost/geturl/getUser.php",
-//		    url: "http://localhost/geturlanduser/getUser.php",
+			url: "http://localhost/web/extension/refresh.php",
 			cache: false,
 			type: "POST",
 			data: JSON.stringify({area:$area,fNumber:$fNumber}),

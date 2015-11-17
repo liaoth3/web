@@ -3,8 +3,11 @@
  error_reporting(E_ALL);
  require_once dirname(__FILE__) . '/common/functions.php';
 
- $data = array("startArea"=>$argv[1],"endArea"=>$argv[2],"count"=>$argv[3]);
- $output = login("http://localhost/web/Crawler/index.php",$data);
+ //$data = array("startArea"=>$argv[1],"endArea"=>$argv[2],"count"=>$argv[3]);
+ //$output = login("http://localhost/web/Crawler/index.php",$data);
+// phpinfo();
+// exit();
+ $output = login("http://localhost/web/extension/refresh.php",array());
  echo "$output\n";
 
 

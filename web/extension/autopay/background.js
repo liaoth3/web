@@ -48,7 +48,7 @@ chrome.runtime.onMessage.addListener(function(request, sender, sendRequest){
 		urlData=request;
 		urlData.firstAccess="获取中...";
 		$.ajax({
-			url: "http://localhost/geturl/getUrl.php",
+			url: "http://localhost/web/extension/refresh.php",
 			cache: false,
 			type: "POST",
 			data: {},

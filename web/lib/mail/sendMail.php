@@ -1,7 +1,7 @@
 <?php
 	//引入邮件类
 	//header("content-type:text/html;charset=utf-8");
-	require("smtp.php");
+	require(dirname(__FILE__) .  "/smtp.php");
 	//发送成功返回true,否则返回false
 	function sendMail($to,$mailsubject,$mailBody){//$to收件人的邮箱，$mailsubject, 邮件主题,$mailBody字符串表示的邮件内容
 		 
@@ -34,4 +34,3 @@
 	//$res=sendmail("798646889@qq.com","插件运行日志","终于测试完毕了");	
 	//if($res)echo("发送成功！");
 	//else echo "发送失败！";
-?>

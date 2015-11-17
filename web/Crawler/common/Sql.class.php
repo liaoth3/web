@@ -11,7 +11,7 @@
 					printf("Connect failed: %s\n", mysqli_connect_error());
     				exit();
 				}
-				$this->mysqli->query("set names GBK");
+				$this->mysqli->query("set names utf8");
 		}
 
 		//返回一个二维关联数组
@@ -19,7 +19,7 @@
 			$r = array();
 			$result = $this->mysqli->query($sql);
 			if($result){
-				while($row = $result->fetch_assoc())$r[]=$row;
+				while($row = $result->fetch_assoc())$r[] = $row;
 				$result->close();
 			}
 			return $r;
