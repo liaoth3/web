@@ -8,18 +8,20 @@ echo json_encode(response());
 function response(){
     try{
         $input        = file_get_contents("php://input");
-        if(strlen($input) == 0){
+       	$jsonData     = json_decode($input);
+        if(!$jsonData){
+            throw new Exception();
+        }
+
+		if(empty($input)){
             $arrUrl = getUrl();
             if(array_key_exists("fail",$arrUrl)){
-                return array ('message'=>'没有新的URL.');
+                return array ('message'=>'there is no new url');
             }else{
                 return $arrUrl;
             }
         }
-        $jsonData     = json_decode($input);
-        if(!$jsonData){
-            throw new Exception();
-        }
+        
         if(empty($jsonData["area"])){
             return Array("user"=>"我我的的你不", "rank"=>"71");
         }
@@ -30,12 +32,12 @@ function response(){
         $list   = getUser($jsonData["area"],$jsonData["fNumber"]);
 
         if(array_key_exists("fail",$list)){
-            return array ('message'=>'得到用户失败');
+            return array ('message'=>'! get user failed ');
         }
         return $list;
 
     }catch (Exception $e){
-        return array ('error'=>'请求不正确.');
+        return array ('error'=>'! the request is wrong');
     }
 
 }
@@ -44,10 +46,10 @@ function getUrl(){
 		$db = new Sql();
 		$queryLocation  = "select * from location";
         $resultLocation = $db->dql($queryLocation);
-		if(!isset($resultLocation["id"])) {
+		if(!isset($resultLocation[0]["id"])) {
             throw new Exception();
         }
-		$query  = "select id,buyurl from purchaseurl where id > " . $resultLocation["id"];
+		$query  = "select id,buyurl from purchaseurl where id > " . $resultLocation[0]["id"];
         $res    = array();
         $result = $db->dql($query);
         if(count($result) == 0){
@@ -81,6 +83,6 @@ function getUser($areaname, $numbername){
 
         return $result[0];
     }catch (Exception $e){
-        return array ('message'=>'没有该区的角色.');
+        return array ('message'=>'! in this area, there isnot user');
     }
 }
