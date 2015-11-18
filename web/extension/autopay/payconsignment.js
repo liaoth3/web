@@ -57,7 +57,6 @@ function getUser($location){
 				}
 				else{
 					$username=data["username"];
-//					$susername=data["username"];
 					$rank=data["userlevel"];
 				}				
 				$("#txtReceivingRole").attr("value",$username);

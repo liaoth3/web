@@ -82,7 +82,7 @@ function getUser($location){
 	}
 	else{
 		$username="我我的的你不";
-		$rank="70";	
+		$rank="71";	
 		$("#PurchaseOrderNew1_BuyerGameRoleInfo1_txtGameRole").attr("value",$username);
 		$("#PurchaseOrderNew1_BuyerGameRoleInfo1_txtGameRoleValidate").attr("value",$username);
 		$("#PurchaseOrderNew1_BuyerGameRoleInfo1_txtGameRoleOther").attr("value",$username);
