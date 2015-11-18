@@ -59,20 +59,17 @@ function getUser($location){
 			dataType: "json",
 			success:function(data){
 				if(data.message){
-					alert(data.message);
 					$username="我我的的你不";
 					$rank="71";
 				}
 				
 				else if(data.error){
-					alert(data.error);
 					return;
 				}
 				else {
 					$username=data["username"];
 					$rank=data["userlevel"];
-                    alert($username);
-				}				
+				}
 				$("#PurchaseOrderNew1_BuyerGameRoleInfo1_txtGameRole").attr("value",$username);
 				$("#PurchaseOrderNew1_BuyerGameRoleInfo1_txtGameRoleValidate").attr("value",$username);
 				$("#PurchaseOrderNew1_BuyerGameRoleInfo1_txtGameRoleOther").attr("value",$username);

@@ -48,13 +48,11 @@ function getUser($location){
 			dataType: "json",
 			success:function(data){
 				if(data.message){
-//					alert(data.message);
 					$username="我我的的你不";
 					$rank="71";
 				}
 				
 				else if(data.error){
-					alert(data.error);
 					return;
 				}
 				else{
@@ -76,7 +74,7 @@ function getUser($location){
 	}
 	else{
 		$username="我我的的你不";
-		$rank="70";	
+		$rank="71";
 		$("#txtReceivingRole").attr("value",$username);
 		$("#txtSureReceivingRole").attr("value",$username);
 		$("#txtOldRole").attr("value",$username);

@@ -3,7 +3,7 @@ header("content-type:application/json; charset:utf-8");
 require_once dirname(__FILE__) . "/../Crawler/common/Sql.class.php";
 require_once dirname(__FILE__) . "/../lib/mail/sendMail.php";
 
-exit(json_encode(response()));
+echo json_encode(response());
 
 function response(){
     try{
@@ -77,6 +77,8 @@ function getUrl(){
 }
 function getUser($areaname, $numbername){
     try{
+        $areaname   = trim($areaname);
+        $numbername = trim($numbername);
         $db     = new Sql();
         $query  = "select username,userlevel from areanumber where areaname = '$areaname' and numbername = '$numbername'";
         $result = $db->dql($query);
