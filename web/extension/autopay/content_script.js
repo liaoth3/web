@@ -6,4 +6,4 @@ function sendMessage(){
 }
 
 //alert("nihao");
-setInterval("sendMessage()",5000);
+setInterval("sendMessage()",1000);
