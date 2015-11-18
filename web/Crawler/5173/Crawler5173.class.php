@@ -5,22 +5,22 @@
 	require_once dirname(__FILE__) . '/../common/cache.php';
 	require_once dirname(__FILE__) . '/rolling_curl.php';
 	class Crawler5173 implements Crawler{
-		private $urlArray;//´æ´¢urlµÄ¶şÎ¬Êı×é£¬$urlArray[0][1]±íÊ¾¹ã¶«1ÇøÅú·¢url
-		private $lowPrice;//¼Û¸ñÏÂÏŞ
-		private $highPrice;//¼Û¸ñÉÏÏŞ
-		private $maxPage;//×î¶à×¥È¡¶àÉÙÒ³
-		private $result;//ÈıÎ¬Êı×é$result[0][0]["price"]±íÊ¾¹ã¶«1È¥µÄ¼Û¸ñ
-		private $usedTime;//×¥È¡ÓÃÊ±
+		private $urlArray;//å­˜å‚¨urlçš„äºŒç»´æ•°ç»„ï¼Œ$urlArray[0][1]è¡¨ç¤ºå¹¿ä¸œ1åŒºæ‰¹å‘url
+		private $lowPrice;//ä»·æ ¼ä¸‹é™
+		private $highPrice;//ä»·æ ¼ä¸Šé™
+		private $maxPage;//æœ€å¤šæŠ“å–å¤šå°‘é¡µ
+		private $result;//ä¸‰ç»´æ•°ç»„$result[0][0]["price"]è¡¨ç¤ºå¹¿ä¸œ1å»çš„ä»·æ ¼
+		private $usedTime;//æŠ“å–ç”¨æ—¶
 		private $recordsAmount;
-		private $multiAmount;//×î´ó²¢·¢Á¿
-		private $area;//°üº¬´óÇøÃû³ÆºÍ±àºÅ¶ÔÓ¦µÄÊı×é
-		private $areaAmount;//´óÇøµÄÊıÁ¿
-		private $startArea;//¿ªÊ¼´óÇø±àºÅ
-		private $endArea;//½áÊø´óÇø±àºÅ
-		private $isSearchSales;//ÊÇ·ñËÑË÷Åú·¢¶©µ¥
-		private $storeAmount; //Ã¿´ÎËÑË÷´æ´¢µÄ¼ÇÂ¼ÌõÊı
-		private $config;//ÅäÖÃ±äÁ¿
-		private $repeatTimes;//³¬Ê±×î¶àÖØĞÂÖ´ĞĞ¶àÉÙ´Î
+		private $multiAmount;//æœ€å¤§å¹¶å‘é‡
+		private $area;//åŒ…å«å¤§åŒºåç§°å’Œç¼–å·å¯¹åº”çš„æ•°ç»„
+		private $areaAmount;//å¤§åŒºçš„æ•°é‡
+		private $startArea;//å¼€å§‹å¤§åŒºç¼–å·
+		private $endArea;//ç»“æŸå¤§åŒºç¼–å·
+		private $isSearchSales;//æ˜¯å¦æœç´¢æ‰¹å‘è®¢å•
+		private $storeAmount; //æ¯æ¬¡æœç´¢å­˜å‚¨çš„è®°å½•æ¡æ•°
+		private $config;//é…ç½®å˜é‡
+		private $repeatTimes;//è¶…æ—¶æœ€å¤šé‡æ–°æ‰§è¡Œå¤šå°‘æ¬¡
 		public function  __construct($startArea,$endArea,$config){
 			$this->config			= $config;
 			$this->urlArray 		= $config["5173"]["url"];
@@ -43,7 +43,7 @@
 
 		}
 		//$wholeUrlArray[]=$this->urlArray[$urlIndex]."$low-$high-0-itemprice_asc-1-$page.shtml";
-		private function getUrl($url,$lowPrice,$highPrice,$page,$type){//$type=1 Æ½³££¬$type=2 Åú·¢
+		private function getUrl($url,$lowPrice,$highPrice,$page,$type){//$type=1 å¹³å¸¸ï¼Œ$type=2 æ‰¹å‘
 			if($type==1){
 				return $url."-0-bx1xiv-0-0-0-a-a-a-"."$lowPrice-$highPrice-0-itemprice_asc-1-$page.shtml";
 			}else{
@@ -60,14 +60,14 @@
 			return false;
 		}
 		public function getInfoByPage($webContents){
-			if(substr_count($webContents,"ÓÎÏ·±ÒÅú·¢")>1){//ÅĞ¶Ï³öÊÛÀàĞÍ
+			if(substr_count($webContents,"æ¸¸æˆå¸æ‰¹å‘")>1){//åˆ¤æ–­å‡ºå”®ç±»å‹
 				$type = 2;
 			}
 			else $type = 1;
 			$r = array();
-			//ÉÌÆ·×ÜÒ³Êı
+			//å•†å“æ€»é¡µæ•°
 			$areaName = $this->getAreaName($webContents);
-			if(!$areaName)return array();//Èç¹ûÎŞ·¨ÅĞ¶ÏÇø·ş£¬·µ»Ø¿Õ
+			if(!$areaName)return array();//å¦‚æœæ— æ³•åˆ¤æ–­åŒºæœï¼Œè¿”å›ç©º
 			$totalAmount = $this->getTotalAmount($webContents);
 			$currentPage = $this->getCurrentPage($webContents);
 			$pattern = '/<div class="sin_pdlbox"[\d\D]{1,3000}<\/div>/';
@@ -102,7 +102,7 @@
 					$credit = substr($credit[0],strpos($credit[0],"title")+7,50);
 			
 					if(strpos($credit,"0")==false){
-						$tmp_arr["credit"] = "ÔİÎŞ";
+						$tmp_arr["credit"] = "æš‚æ— ";
 					}else{
 							
 						$tmp_arr["credit"] = substr($credit,0,4);
@@ -110,25 +110,25 @@
 					$buyLink = substr($buyLink[0],strpos($buyLink[0],"href=")+6);
 					$buyLink = substr($buyLink,0,strpos($buyLink,'"'));
 					$tmp_arr["buyLink"] = $buyLink;
-					if($type==2)$tmp_arr["sale"] = 1;//±íÊ¾Åú·¢
-					else $tmp_arr["sale"] = 0;//±íÊ¾ÁãÊÛ
+					if($type==2)$tmp_arr["sale"] = 1;//è¡¨ç¤ºæ‰¹å‘
+					else $tmp_arr["sale"] = 0;//è¡¨ç¤ºé›¶å”®
 					
-					if(strpos($v,"Äú½«»ñµÃ10ÔªÅâ¿î"))$tmp_arr["payFor"] = 1;//±íÊ¾Åâ¸¶
+					if(strpos($v,"æ‚¨å°†è·å¾—10å…ƒèµ”æ¬¾"))$tmp_arr["payFor"] = 1;//è¡¨ç¤ºèµ”ä»˜
 					else $tmp_arr["payFor"] = 0;
 					
-					if(strpos($v,"¿É»ñÃâµ¥»ú»á"))$tmp_arr["free"] = 1;//±íÊ¾Ãâµ¥
+					if(strpos($v,"å¯è·å…å•æœºä¼š"))$tmp_arr["free"] = 1;//è¡¨ç¤ºå…å•
 					else $tmp_arr["free"] = 0;
 
-					if(strpos($v,"¸½Ä§")){
+					if(strpos($v,"é™„é­”")){
 						$tmp_arr["magic"] = 1;
 						//echo $v;
-					}//±íÊ¾¸½Ä§
+					}//è¡¨ç¤ºé™„é­”
 					else $tmp_arr["magic"] = 0;
 					
-					if(substr_count($v,"danbao.5173.com")>1)$tmp_arr["ensure"] = 1;//±íÊ¾µ£±£
+					if(substr_count($v,"danbao.5173.com")>1)$tmp_arr["ensure"] = 1;//è¡¨ç¤ºæ‹…ä¿
 					else $tmp_arr["ensure"] = 0;
 					
-					if(substr_count($v,"consignment.5173.com")>1)$tmp_arr["consign"] = 1;//±íÊ¾¼ÄÊÛ
+					if(substr_count($v,"consignment.5173.com")>1)$tmp_arr["consign"] = 1;//è¡¨ç¤ºå¯„å”®
 					else $tmp_arr["consign"] = 0;
 
 					//echo $v;
@@ -138,7 +138,7 @@
 				}
 				
 		}
-		$arr = array("contents"=>$r,"areaNumber"=>($this->getAreaNumber($areaName)),"currentPage"=>$currentPage,"totalAmount"=>$totalAmount,"type"=>$type);//1±íÊ¾Õı³£µ¥¼Û£¬2±íÊ¾Åú·¢
+		$arr = array("contents"=>$r,"areaNumber"=>($this->getAreaNumber($areaName)),"currentPage"=>$currentPage,"totalAmount"=>$totalAmount,"type"=>$type);//1è¡¨ç¤ºæ­£å¸¸å•ä»·ï¼Œ2è¡¨ç¤ºæ‰¹å‘
 		return $arr;
 	}
 		private function getAreaName($webContent){
@@ -172,7 +172,7 @@
 			$high=max($this->lowPrice,$this->highPrice);
 
 			$wholeUrlArray = array();
-			$page = 1;//µ±Ç°Ò³Êı
+			$page = 1;//å½“å‰é¡µæ•°
 			for($urlIndex = $this->startArea;$urlIndex<$this->endArea&&$urlIndex<$this->areaAmount;$urlIndex++){
 				$wholeUrlArray[$urlIndex] = $this->getUrl($this->urlArray[$urlIndex], $low, $high, $page, 1);
 				//echo "<a href=" . $wholeUrlArray[$urlIndex] . ">click<a> \n <br>";
@@ -192,6 +192,10 @@
 					$curl->get($url);
 				}
 				$contents = $curl->execute();
+                foreach($contents as $k => $v){
+                    $contents[$k] = iconv("gb2312", "utf-8",$v);
+               }
+
 				//file_put_contents(dirname(__FILE__) . "/webPage/" . time() . ".html" ,$contents);
 				$index = 0;
 				$res = array();
@@ -249,7 +253,7 @@
 					$buyLink 		= $v["buyLink"];
 					$time			= $v["time"];
 					$areaname 		= $this->config["common"]["area"][$index];
-                    $univalence 	= round($goldAmount / $price,2);
+					$univalence 	= round($goldAmount / $price,2);
 					$buyUnivalence	= round($this->config["common"]["univalence"][$index],2) * (1 + round($this->config["common"]["profitRate"],2));
 					$buyUnivalence	= round($buyUnivalence,2);	
 					if($univalence 	>= $buyUnivalence){
@@ -262,7 +266,7 @@
 								$redis->set($buyLink_, 1);
 							}
 						}
-                     
+
 						//search in DB
 						$db = new Sql();
 						
@@ -271,8 +275,7 @@
 		                		//echo "$selectSql\n";
 						if(count($res) > 0){
 							continue;
-						
-                        }
+						}
 						$storeSql = "insert into purchaseurl(
 						buyurl,
 						areaname,
@@ -398,9 +401,9 @@
 			if(empty($r))continue;
 			echo "<table border=1 align='center'>";
 			$areaNumber = $k + 1;
-			echo "<caption><b>µÚ{$areaNumber}Çø:".$this->area[$k]."</b> total:<b>".count($r)."</b> records,used time:<b>".$this->usedTime."</b> seconds</caption>";
-			echo "<th>±àºÅ</th><th>±ÈÀı</th><th>ÊıÁ¿</th><th>¼Û¸ñ</th><th>¼şÊı</th><th>µ£±£</th><th>¼ÄÊÛ</th><th>Åú·¢</th><th>Åâ¸¶</th><th>Ãâµ¥</th><th>¸½Ä§</th><th>Æ½Ì¨</th><th>ĞÅÓÃ</th><th>Ê±¼ä</th>";
-			echo "<th>¹ºÂòÁ´½Ó</th>";
+			echo "<caption><b>ç¬¬{$areaNumber}åŒº:".$this->area[$k]."</b> total:<b>".count($r)."</b> records,used time:<b>".$this->usedTime."</b> seconds</caption>";
+			echo "<th>ç¼–å·</th><th>æ¯”ä¾‹</th><th>æ•°é‡</th><th>ä»·æ ¼</th><th>ä»¶æ•°</th><th>æ‹…ä¿</th><th>å¯„å”®</th><th>æ‰¹å‘</th><th>èµ”ä»˜</th><th>å…å•</th><th>é™„é­”</th><th>å¹³å°</th><th>ä¿¡ç”¨</th><th>æ—¶é—´</th>";
+			echo "<th>è´­ä¹°é“¾æ¥</th>";
 			$count = 1;
 			foreach ($r as $v) {
 				echo "<tr width='200px'align='center'>";

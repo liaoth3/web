@@ -44,6 +44,20 @@ function configMap($config){
     }
     return $result;
 }
+function xhprof_debug($call_func_name, $parmArr){
+    xhprof_enable();
+    call_user_func_array($call_func_name, $parmArr);
+    $xhprof_data = xhprof_disable();
+        
+    $XHPROF_ROOT = realpath(dirname(__FILE__) .'/../../lib/xhprof');
+    include_once $XHPROF_ROOT . "/xhprof_lib/utils/xhprof_lib.php";
+    include_once $XHPROF_ROOT . "/xhprof_lib/utils/xhprof_runs.php";
+    
+    $xhprof_runs = new XHProfRuns_Default();
+    $run_id = $xhprof_runs->save_run($xhprof_data, "xhprof_foo");     
+
+    header("location:http://123.56.126.96/web/lib/xhprof/xhprof_html/index.php?run=$run_id&source=xhprof_foo");
+}
 
 /**
  * cURL multi��������
