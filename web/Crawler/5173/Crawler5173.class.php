@@ -249,7 +249,7 @@
 					$buyLink 		= $v["buyLink"];
 					$time			= $v["time"];
 					$areaname 		= $this->config["common"]["area"][$index];
-					$univalence 	= round($goldAmount / $price,2);
+                    $univalence 	= round($goldAmount / $price,2);
 					$buyUnivalence	= round($this->config["common"]["univalence"][$index],2) * (1 + round($this->config["common"]["profitRate"],2));
 					$buyUnivalence	= round($buyUnivalence,2);	
 					if($univalence 	>= $buyUnivalence){
@@ -262,7 +262,7 @@
 								$redis->set($buyLink_, 1);
 							}
 						}
-
+                     
 						//search in DB
 						$db = new Sql();
 						
@@ -271,7 +271,8 @@
 		                		//echo "$selectSql\n";
 						if(count($res) > 0){
 							continue;
-						}
+						
+                        }
 						$storeSql = "insert into purchaseurl(
 						buyurl,
 						areaname,
