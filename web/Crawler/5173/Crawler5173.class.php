@@ -70,7 +70,7 @@
 			if(!$areaName)return array();//如果无法判断区服，返回空
 			$totalAmount = $this->getTotalAmount($webContents);
 			$currentPage = $this->getCurrentPage($webContents);
-			$pattern = '/<div class="sin_pdlbox"[\d\D]{1,3000}<\/div>/';
+			$pattern = '/<div class="sin_pdlbox"[\d\D]*?>[\d\D]*?<\/div>/';
 			preg_match_all($pattern,$webContents,$match);
 			if(!is_array($match)&&!isset($match[0])){
 				exit();
@@ -78,14 +78,14 @@
 			//$i=0;
 			foreach($match[0] as $key=>$v){
 				$tmp_arr = array();
-				preg_match('/<ul class="pdlist_price">[\d\D]{1,100}<\/ul>/',$v,$price);
-				preg_match('/<li class="tt">[\d\D]{100,600}<\/li>/',$v,$goldAmount);
-				preg_match('/<ul class="pdlist_num">[\d\D]{1,100}<\/ul>/',$v,$itemAmount);
-				preg_match('/<li class="credit">[\d\D]{50,500}<\/li>/',$v,$credit);
-				preg_match('/<ul class="pdlist_delivery">[\d\D]{10,2000}<\/ul>/',$v,$tmp);
+				preg_match('/<ul class="pdlist_price">[\d\D]*?<\/ul>/',$v,$price);
+				preg_match('/<li class="tt">[\d\D]*?<\/li>/',$v,$goldAmount);
+				preg_match('/<ul class="pdlist_num">[\d\D]*?<\/ul>/',$v,$itemAmount);
+				preg_match('/<li class="credit">[\d\D]*?<\/li>/',$v,$credit);
+				preg_match('/<ul class="pdlist_delivery">[\d\D]*?<\/ul>/',$v,$tmp);
 				preg_match('/href="[\d\D]*"/',$tmp[0],$buyLink);
 				if(is_array($price)&&isset($price[0])){
-					$price = (int)(strip_tags($price[0]));
+					$price = (double)(strip_tags($price[0]));
 					$tmp_arr["price"] = $price;
 					if(isset($goldAmount[0])&&$goldAmount[0]){
 						$goldAmount = (int)(strip_tags($goldAmount[0]));
