@@ -44,9 +44,9 @@ function configMap($config){
     }
     return $result;
 }
-function xhprof_debug($call_func_name, $parmArr){
+function xhprof_debug($call_func_name, $parmArr, $count){
     xhprof_enable();
-    call_user_func_array($call_func_name, $parmArr);
+    while($count--)call_user_func_array($call_func_name, $parmArr);
     $xhprof_data = xhprof_disable();
         
     $XHPROF_ROOT = realpath(dirname(__FILE__) .'/../../lib/xhprof');
